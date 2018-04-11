@@ -29,7 +29,7 @@ MetaboxResource.define_config("metabox-kb") do | metabox |
       end  
     end
 
-    file_set.define_file("KB2919442-2012r2") do | file |
+    file_set.define_file("KB3045557-2012r2") do | file |
       file.source_url        = "http://download.microsoft.com/download/C/3/A/C3A5200B-D33C-47E9-9D70-2F7C65DAAD94/NDP46-KB3045557-x86-x64-AllOS-ENU.exe"
       file.destination_path  = "#{download_dir}/KB3045557/NDP46-KB3045557-x86-x64-AllOS-ENU.exe"
 

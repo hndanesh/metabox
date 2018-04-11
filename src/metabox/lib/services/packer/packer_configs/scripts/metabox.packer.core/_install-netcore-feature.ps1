@@ -20,8 +20,8 @@ Configuration NETFrameworkCore
         {
             Ensure  = "Present"
             Name    = "NET-Framework-Core"
-            Source  = "Windows Update"
         }
+
     }
 }
 

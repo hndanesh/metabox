@@ -45,6 +45,17 @@ MetaboxResource.define_config("win2012-r2-mb-app") do | metabox |
         ]
       }
 
+      # Configuring Windows to install updates from online source
+      packer_template.provisioners << { 
+        "type" => "powershell",
+        "scripts" => [
+          "./scripts/packer/metabox.packer.core/_configure-update-source.ps1"
+        ],
+        "environment_vars" => [
+          "METABOX_DSC_CHECK=1"
+        ]
+      }
+
       # NET core install and reboot
       # two hits with METABOX_DSC_CHECK=1 flag to mitigate glitches
       # installing it first as it may hang and fail while installing via Internet
@@ -53,7 +64,8 @@ MetaboxResource.define_config("win2012-r2-mb-app") do | metabox |
         "type" => "powershell",
         "scripts" => [
           "./scripts/packer/metabox.packer.core/_install-netcore-feature.ps1"
-        ]
+        ],
+        "pause_before": "5m"
       }
       packer_template.provisioners << { 
         "type" => "windows-restart"
