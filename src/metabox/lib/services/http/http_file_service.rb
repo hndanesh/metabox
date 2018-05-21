@@ -60,15 +60,22 @@ module Metabox
         end
 
         def _execute_post_handlers(resource_name, resource)
-            log.debug "Executing post-handlers on resource: #{resource_name}"
+            log.info "Executing post-handlers on resource: #{resource_name}"
             resource_value = resource.values.first
 
             scripts = [] 
             
+            puts resource_value
+
             if resource_value.hooks && 
                 resource_value.hooks["post"] &&
                 resource_value.hooks["post"]["inline"] 
+
                 scripts = resource_value.hooks["post"]["inline"] 
+
+                log.info "Found post-handler scripts"
+            else 
+                log.info "Cannot find post-handler script"
             end
 
             home_folder = _get_destination_folder_path(resource_value)

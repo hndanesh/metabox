@@ -33,6 +33,50 @@ MetaboxResource.define_config("metabox-sharepoint2016") do | metabox |
       end  
     end
 
+    file_set.define_file("vs2017.vs_enterprise.exe") do | file |
+      file.source_url        = "https://download.visualstudio.microsoft.com/download/pr/12221250/52257ee3e96d6e07313e41ad155b155a/vs_Enterprise.exe"
+      file.destination_path  = "#{download_dir}/vs2017.vs_ent/vs_Enterprise.exe"
+
+      file.define_checksum do | sum |
+        sum.enabled = true
+        sum.type    = "sha1"
+        sum.value   = "46d538480b8d09ea5b149c594dc1158023c3a3eb"
+      end  
+
+      file.hooks = {
+        'post' => {
+          'inline' => [
+            "echo 'Downloading VS2017 with default layout...'",
+            [
+              "powershell \"cd; Start-Process -FilePath \"vs_Enterprise.exe\"",
+              "-ArgumentList",
+              "'",
+                "--layout #{download_dir}/vs2017.vs_ent/vs17-dev",
+                "--add Microsoft.VisualStudio.Workload.Office",
+                "--add Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools",
+                "--add Microsoft.VisualStudio.Workload.NetCoreBuildTools",
+                "--add Microsoft.VisualStudio.Workload.WebBuildTools",
+                "--includeRecommended",
+                "--lang en-US",
+                "--quiet",
+              "'",
+              "-Wait; \""
+            ].join(" "),
+            "echo 'Downloading VS2017 with default layout completed!'",
+            
+            'echo "Cleaning previous files:  zip\dist.*"',
+            'del /s /q /f zip\dist.*',
+            'echo "Cleaning previous files:  zip\dist.* completed!"',  
+
+            'echo "Repacking zip\dist.*"',  
+            "7z -v500m a zip/dist.zip -m0=Copy vs17-dev"
+            'echo "Repacking zip\dist.* completed!"',  
+          ]
+        }
+      }
+
+    end
+
   end
 
 end
