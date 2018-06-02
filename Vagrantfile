@@ -14,16 +14,26 @@ Vagrant.configure("2") do |config|
     # boxes at https://vagrantcloud.com/search.
     config.vm.box = "ailispaw/barge"
   
-    config.vm.synced_folder "./app", "/app" #, fsnotify: true
+    config.vm.synced_folder "./docs", "/app/docs" 
+    config.vm.synced_folder "./ci", "/app/ci" 
+    config.vm.synced_folder "./src", "/app/metabox" 
    
-    config.vm.network "forwarded_port", guest: 8080, host: 8095
+    # vuepress site mappping
+    config.vm.network "forwarded_port", guest: 8082, host: 8082
 
-    # jenkins2 agent port
+    # jenkins2 web ui and agent port
+    config.vm.network "forwarded_port", guest: 8080, host: 8095
     config.vm.network "forwarded_port", guest: 50000, host: 50000
   
     # build containers, exit 0 to avoid initial VM failures
     config.vm.provision "shell",
-      inline: "cd /app/metabox-jenkins2 && docker build --tag subpoint/metabox-jenkins2 . ; exit 0"
+      inline: "cd /app/docs && docker build --tag subpoint/metabox-docs . ; exit 0"
+
+    config.vm.provision "shell",
+      inline: "cd /app/metabox && docker build --tag subpoint/metabox-ruby . ; exit 0"
+
+    config.vm.provision "shell",
+      inline: "cd /app/ci/metabox-jenkins2 && docker build --tag subpoint/metabox-jenkins2 . ; exit 0"
 
     # Disable automatic box update checking. If you disable this, then
     # boxes will only be checked for updates when the user runs

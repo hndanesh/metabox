@@ -79,6 +79,18 @@ Furthermore, Packer/Vagrant provision is made using the following tech:
 gem build *.gemspec && gem install --local *.gem --no-ri --no-rdoc
 ```
 
+## metabox docker build
+
+```
+cd /app/metabox
+docker run --rm -it -v $(pwd):/app  --entrypoint bash subpoint/metabox-ruby
+
+cd /app/metabox
+gem build *.gemspec
+
+gem build *.gemspec && gem install --local *.gem --no-ri --no-rdoc
+```
+
 ## Feature requests, support and contributions
 Metabox is a part of the SPMeta2 ecosystem. In case you have unexpected issues or keen to see new features just create a new GitHub issue and check documentation available:
 
