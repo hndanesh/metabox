@@ -11,3 +11,5 @@ coverage/
 artifacts/
 src/config.user/
 src/config.custom/
+**/.vagrant/**
+*.gem

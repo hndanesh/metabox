@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+
+require "metabox"
+
+# initialize metabox api client
+$mb_api = Metabox::ApiClient.new
+$mb_api.welcome_message
+
+def get_task_params(cmd_params:) 
+    # emulate rake task format 'metabox:version'
+    task_name   =  ""
+    task_params = []
+
+    if cmd_params.first == "version"
+        task_name   = "metabox:version"
+        task_params = []
+    else 
+        task_name   = cmd_params[0] + ":" + cmd_params[1]
+        task_params = cmd_params.length > 2 ? cmd_params.drop(2).to_a : []
+    end
+
+    {
+        :task_name   => task_name,
+        :task_params => task_params
+    }
+end
+
+task_args = get_task_params(cmd_params: ARGV)
+
+task_name   =  task_args[:task_name] 
+task_params =  task_args[:task_params]
+
+# puts "task_name  : #{task_name}"
+# puts "task_params: #{task_params}"
+
+# configure metabox from Metaboxfile
+metabox_file = File.expand_path("Metaboxfile")
+
+if File.exist? metabox_file
+    load metabox_file
+end
+
+result = $mb_api.execute_task(
+    task_name: task_name,
+    params: task_params
+)
+
+if !result.nil?
+    exit(result)
+end
+
+exit(0)

@@ -73,6 +73,12 @@ Furthermore, Packer/Vagrant provision is made using the following tech:
 * PowerShell DSC (various configurations for DC, SQL, SharePoint DSC)
 * Ruby Sinatra (to expose files via HTTP server to Vagrant VMs)
 
+## gem builds
+```
+# build and install gem
+gem build *.gemspec && gem install --local *.gem --no-ri --no-rdoc
+```
+
 ## Feature requests, support and contributions
 Metabox is a part of the SPMeta2 ecosystem. In case you have unexpected issues or keen to see new features just create a new GitHub issue and check documentation available:
 

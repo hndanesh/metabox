@@ -23,6 +23,10 @@ module Metabox
 
             service = _services[service_name]
             
+            if service.nil?
+                raise "Cannot find service by name: #{service_name}"
+            end
+
             service.send(task_name, params)
         end
 

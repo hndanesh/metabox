@@ -100,6 +100,10 @@ module Metabox
             result
         end
 
+        def set_metabox_working_dir
+            
+        end
+
         def get_metabox_working_dir
             result = File.expand_path(__env.fetch('METABOX_WORKING_DIR', "~/.metabox_home"))
             FileUtils.mkdir_p result

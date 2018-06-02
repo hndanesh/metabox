@@ -45,6 +45,12 @@ _include_folder_services [  "documents", "services", "resources", "roles" ]
 
 module Metabox
   
+  def self.configure(&block)
+
+      block.call($mb_api)
+    
+  end
+
   class ApiClient < ServiceBase
     
     @os_service = nil
