@@ -91,6 +91,20 @@ gem build *.gemspec
 gem build *.gemspec && gem install --local *.gem --no-ri --no-rdoc
 ```
 
+## Jenkins2 runs:
+
+```
+vagrant up
+vagrant ssh
+
+docker run -p 8080:8080 -p 50000:50000 -v /app/ci/metabox-jenkins2:/app  subpoint/metabox-jenkins2
+
+# then on the host, connect the agent
+powershell ". metabox-ci.ps1; Mb-InitSlave 8095 metabox-host-agent"
+pwsh -c ". metabox-ci.ps1; Mb-InitSlave 8095 metabox-host-agent"
+
+```
+
 ## Feature requests, support and contributions
 Metabox is a part of the SPMeta2 ecosystem. In case you have unexpected issues or keen to see new features just create a new GitHub issue and check documentation available:
 
