@@ -45,7 +45,7 @@ result = $mb_api.execute_task(
     params: task_params
 )
 
-if !result.nil?
+if !result.nil? && !result.is_a?(Array)
     exit(result)
 end
 

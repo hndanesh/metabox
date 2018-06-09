@@ -7,22 +7,28 @@ has_gem = false
 
 if METABOX_SRC_PATH.nil? || METABOX_SRC_PATH.empty?
     # fallback to gem?
+    puts "Looking for gem: metabox"
+
     begin
+        puts 'gem "metabox"'
         gem "metabox"
         has_gem = true
     rescue Gem::LoadError
+        puts "Failed to load the gem"
         has_gem = false
     end
 
     if has_gem == false
         raise "ENV['METABOX_SRC_PATH'] is nil or empty, and no 'metabox' was detected"
     end
+else 
+    puts 'METABOX_SRC_PATH IS NOT NULL'
 end
 
 if has_gem 
     require "metabox"
 else
-    metabox_api_path = File.absolute_path "#{METABOX_SRC_PATH}/metabox/lib/metabox.rb"
+    metabox_api_path = File.absolute_path "#{METABOX_SRC_PATH}/lib/metabox.rb"
     puts "METABOX: requiring Ruby script: #{metabox_api_path}"
     require metabox_api_path
 end

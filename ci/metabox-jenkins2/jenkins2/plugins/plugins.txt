@@ -64,3 +64,4 @@ workflow-scm-step:latest
 workflow-step-api:latest
 workflow-support:latest
 swarm:latest
+delivery-pipeline-plugin:latest

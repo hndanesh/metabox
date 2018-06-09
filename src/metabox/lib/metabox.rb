@@ -47,6 +47,15 @@ module Metabox
   
   def self.configure(&block)
 
+      # try to reconfigure itself with the base gems path
+      # this one would later be picked up by default Vagrantfile to configiure VMs
+
+      source_path = Metabox.method(:configure).source_location.first.to_s
+      source_path = source_path.sub 'lib/metabox.rb', '' 
+      source_path = source_path.sub 'lib\metabox.rb', '' 
+
+      ENV['METABOX_SRC_PATH'] = source_path
+
       block.call($mb_api)
     
   end

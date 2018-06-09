@@ -82,9 +82,14 @@ gem build *.gemspec && gem install --local *.gem --no-ri --no-rdoc
 ## metabox docker build
 
 ```
+# build jenkins2 container
+cd /app/ci/metabox-jenkins2 && docker build --tag subpoint/metabox-jenkins2 .
+
+# build metabox ruby dev container
 cd /app/metabox
 docker run --rm -it -v $(pwd):/app  --entrypoint bash subpoint/metabox-ruby
 
+# build ruby gems
 cd /app/metabox
 gem build *.gemspec
 
@@ -100,8 +105,8 @@ vagrant ssh
 docker run -p 8080:8080 -p 50000:50000 -v /app/ci/metabox-jenkins2:/app  subpoint/metabox-jenkins2
 
 # then on the host, connect the agent
-powershell ". metabox-ci.ps1; Mb-InitSlave 8095 metabox-host-agent"
-pwsh -c ". metabox-ci.ps1; Mb-InitSlave 8095 metabox-host-agent"
+powershell ". ./src/ci/metabox-ci.ps1; Mb-InitSlave 8095 metabox-host-agent"
+pwsh -c ". ./src/ci/metabox-ci.ps1; Mb-InitSlave 8095 metabox-host-agent"
 
 ```
 
