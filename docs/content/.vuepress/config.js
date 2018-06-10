@@ -1,5 +1,6 @@
 module.exports = {
     themeConfig: {
+        base: "/metapack/",
 
         repo: 'SubPointSolutions/metabox',
         //repoLabel: 'Contribute!',
