@@ -4,7 +4,8 @@ module.exports = {
 
     themeConfig: {
         
-        lastUpdated: 'Last Updated',
+        // does not work under Docker container, hmm
+        //lastUpdated: 'Last Updated',
 
         repo: 'SubPointSolutions/metabox',
         //repoLabel: 'Contribute!',
