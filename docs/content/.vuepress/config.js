@@ -1,6 +1,10 @@
 module.exports = {
+
+    base: "/metabox/",
+
     themeConfig: {
-        base: "/metapack/",
+        
+        lastUpdated: 'Last Updated',
 
         repo: 'SubPointSolutions/metabox',
         //repoLabel: 'Contribute!',
