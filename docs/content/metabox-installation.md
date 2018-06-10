@@ -1,4 +1,4 @@
-## Background
+# Installation
 
 Metabox is an enhancement API layer on top of Packer/Vagrant tools to simplify machine image builds and Vagrant VMs management. It hides low-level details of Packer/Vagrant offering a consistent workflow to create, author and manage images and virtual machines.
 
@@ -8,7 +8,7 @@ It is written in Ruby and exposes a bunch of Rake tasks to manipulate Packer/Vag
 
 Being written in Ruby, metabox works well on MacOS and Windows platforms. In fact, it has been tested on Windows 2008, Windows 2016, Windows 10 and MacOS without major issues.
 
-## Installation 
+## Geting started 
 Being an enhancement API layer on top of Packer/Vagrant, metabox requires several tools to be present in the PATH. Actual list of tools vary for the target platform, such as MacOS or Windows, but at glance looks as following:
 
 **Macbook**

@@ -1,3 +1,5 @@
+# Known issues
+
 * Vagrant hangs on all commands (Windows 7) #7823
 https://github.com/hashicorp/vagrant/issues/7823
 
