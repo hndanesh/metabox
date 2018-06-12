@@ -300,12 +300,14 @@ We would also need to download SQL14, SharePoint 2016 RTM and Feature2 Pack dist
 
 ```bash
 # download SQL14
-cls && "config/.metabox.downloads.bat" && rake resource:generate && rake resource:list  && rake fileset:download[sql::sql2014sp1] 
+cls && "config/.metabox.downloads.bat" && rake resource:generate && rake resource:list  && rake fileset:download[sql::sql2014sp1]
 
 # download SharePoint 2016 RTM and FP2
-cls && "config/.metabox.downloads.bat" && rake resource:generate && rake resource:list  && rake fileset:download[sp2016::sp2016server_rtm] 
+cls && "config/.metabox.downloads.bat" && rake resource:generate && rake resource:list  && rake fileset:download[sp2016::sp2016server_rtm]
 
-cls && "config/.metabox.downloads.bat" && rake resource:generate && rake resource:list  && rake fileset:download[sp2016::sp2016_fp2] 
+cls && "config/.metabox.downloads.bat" && rake resource:generate && rake resource:list  && rake fileset:download[sp2016::sp2016_fp2]
+
+cls && "config/.metabox.downloads.bat" && rake resource:generate && rake resource:list  && rake fileset:download[visualstudio::vs2017.vs_enterprise.exe]
 
 ```
 
@@ -316,7 +318,7 @@ cls && "config/.metabox.downloads.bat" && rake resource:generate && rake resourc
 cls && "config/.metabox.images.soe.bat" && rake resource:generate && rake resource:list  && rake packer:build[win2016-mb-soe,--force] && rake vagrant:add[win2016-mb-soe,--force] 
 
 # app image
-cls && "config/.metabox.images.soe.app.bat" && rake resource:generate && rake resource:list  && rake packer:build[win2016-mb-soe,--force] && rake vagrant:add[win2016-mb-soe,--force]
+cls && "config/.metabox.images.soe.app.bat" && rake resource:generate && rake resource:list  && rake packer:build[win2016-mb-app,--force] && rake vagrant:add[win2016-mb-app,--force]
 
 # 2016 RTM image
 cls && "config/.metabox.images.sp16fp2.bat" && rake resource:generate && rake resource:list  && rake packer:build[win2016-mb-bin-sp16rtm,--force] && rake vagrant:add[win2016-mb-bin-sp16rtm,--force]
@@ -335,20 +337,19 @@ cls && "config/.contoso.bat" && rake resource:generate && rake vagrant:status
 cls && "config/.contoso.bat" && rake resource:generate && rake vagrant:destroy[_all,--force]
 
 # provision DC, and client VMs joined to DC
-cls && "config/.contoso.bat" && rake resource:generate && rake vagrant:up[contoso-win2016::dc]
-cls && "config/.contoso.bat" && rake resource:generate && rake vagrant:up[contoso-win2016::client]
+cls && "config/.contoso.bat" && rake resource:generate && rake vagrant:up[contoso16::dc]
+cls && "config/.contoso.bat" && rake resource:generate && rake vagrant:up[contoso16::client]
 
-# provision VM with VS13 
+# provision VM with VS17 
 # for VS15 a file resource needs to be downloaded before
-cls && "config/.contoso.bat" && rake resource:generate && rake vagrant:up[contoso-win2016::vs13]
-cls && "config/.contoso.bat" && rake resource:generate && rake vagrant:up[contoso-win2016::vs15]
+cls && "config/.contoso.bat" && rake resource:generate && rake vagrant:up[contoso16::vs13]
 
 # proivision VM with SQL14
 # for SQL14 a file resource needs to be downloaded before
-cls && "config/.contoso.bat" && rake resource:generate && rake  vagrant:up[contoso-win2016::sql14]
+cls && "config/.contoso.bat" && rake resource:generate && rake  vagrant:up[contoso16::sql14]
 
 # proivision a SharePoint farm
-cls && "config/.contoso.bat" && rake resource:generate && rake  vagrant:up[contoso-win2016::sp_first]
+cls && "config/.contoso.bat" && rake resource:generate && rake  vagrant:up[contoso16::sp_first]
 ```
 
 ### What's next?
