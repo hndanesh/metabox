@@ -69,8 +69,8 @@ MetaboxResource.define_config("metabox-sharepoint2016") do | metabox |
             'echo "Cleaning previous files:  zip\dist.* completed!"',  
 
             'echo "Repacking zip\dist.*"',  
-            "7z -v500m a zip/dist.zip -m0=Copy vs17-dev"
-            'echo "Repacking zip\dist.* completed!"',  
+            "7z -v500m a zip/dist.zip -m0=Copy vs17-dev",
+            'echo "Repacking zip\dist.* completed!"'
           ]
         }
       }

@@ -346,10 +346,10 @@ cls && "config/.contoso.bat" && rake resource:generate && rake vagrant:up[contos
 
 # proivision VM with SQL14
 # for SQL14 a file resource needs to be downloaded before
-cls && "config/.contoso.bat" && rake resource:generate && rake  vagrant:up[contoso16::sql14]
+cls && "config/.contoso.bat" && rake resource:generate && rake vagrant:up[contoso16::sql14]
 
 # proivision a SharePoint farm
-cls && "config/.contoso.bat" && rake resource:generate && rake  vagrant:up[contoso16::sp_first]
+cls && "config/.contoso.bat" && rake resource:generate && rake vagrant:up[contoso16::sp16_fp2]
 ```
 
 ### What's next?
