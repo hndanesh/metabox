@@ -315,16 +315,16 @@ cls && "config/.metabox.downloads.bat" && rake resource:generate && rake resourc
 
 ```bash
 # soe image
-cls && "config/.metabox.images.soe.bat" && rake resource:generate && rake resource:list  && rake packer:build[win2016-mb-soe,--force] && rake vagrant:add[win2016-mb-soe,--force] 
+cls && "config/.metabox.images.soe.bat" && rake resource:generate && rake resource:list && rake packer:build[win2016-mb-soe,--force] && rake vagrant:add[win2016-mb-soe,--force] 
 
 # app image
-cls && "config/.metabox.images.soe.app.bat" && rake resource:generate && rake resource:list  && rake packer:build[win2016-mb-app,--force] && rake vagrant:add[win2016-mb-app,--force]
+cls && "config/.metabox.images.soe.app.bat" && rake resource:generate && rake resource:list && rake packer:build[win2016-mb-app,--force] && rake vagrant:add[win2016-mb-app,--force]
 
 # 2016 RTM image
-cls && "config/.metabox.images.sp16fp2.bat" && rake resource:generate && rake resource:list  && rake packer:build[win2016-mb-bin-sp16rtm,--force] && rake vagrant:add[win2016-mb-bin-sp16rtm,--force]
+cls && "config/.metabox.images.sp16fp2.bat" && rake resource:generate && rake resource:list && rake packer:build[win2016-mb-bin-sp16rtm,--force] && rake vagrant:add[win2016-mb-bin-sp16rtm,--force]
 
 # 2016 FP2 image
-cls && "config/.metabox.images.sp16fp2.bat" && rake resource:generate && rake resource:list  && rake packer:build[win2016-mb-bin-sp16fp2,--force] && rake vagrant:add[win2016-mb-bin-sp16fp2,--force]
+cls && "config/.metabox.images.sp16fp2.bat" && rake resource:generate && rake resource:list && rake packer:build[win2016-mb-bin-sp16fp2,--force] && rake vagrant:add[win2016-mb-bin-sp16fp2,--force]
 
 ```
 
