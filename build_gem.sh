@@ -23,3 +23,5 @@ sh -c 'cd ./src/metabox && gem build *.gemspec'
 RETVAL=$?
 [ $RETVAL -eq 0 ] && echo "All good!"
 [ $RETVAL -ne 0 ] && echo "Can't build gem, exit code was: $RETVAL" && exit $RETVAL
+
+exit 0
