@@ -6,7 +6,7 @@ build_script:
   - pwd && ls -la
   - which ruby && ruby --version
   - rvm use 2.4.1 && which ruby && ruby --version
-  - rvm use 2.4.1 && ./build_gem.sh
+  - rvm use 2.4.1 && chmod +x ./build_gem.sh && ./build_gem.sh
 
 artifacts:
     - path: '**\metabox\*.gem'
