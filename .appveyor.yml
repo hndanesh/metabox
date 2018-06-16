@@ -1,0 +1,12 @@
+image: ubuntu
+
+build: off
+
+build_script:
+  - pwd && ls -la
+  - which ruby && ruby --version
+  - rvm use 2.4.1 && which ruby && ruby --version
+  - rvm use 2.4.1 && cd ./src/metabox && gem build *.gemspec 
+
+artifacts:
+    - path: '**\metabox\*.gem'
