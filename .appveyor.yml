@@ -9,4 +9,4 @@ build_script:
   - rvm use 2.4.1 && chmod +x ./build_gem.sh && ./build_gem.sh
 
 artifacts:
-    - path: '**\metabox\*.gem'
+    - path: '**\.build\*.gem'
