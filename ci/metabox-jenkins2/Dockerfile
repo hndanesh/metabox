@@ -11,3 +11,5 @@ COPY jenkins2/init.groovy.d/* /usr/share/jenkins/ref/init.groovy.d/
 # Skip initial setup
 # search on github for more details
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+
+COPY jenkins2/pipelines/* /app/jenkins2/pipelines/

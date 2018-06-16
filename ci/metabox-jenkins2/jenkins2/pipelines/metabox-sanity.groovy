@@ -6,9 +6,6 @@ node('metabox') {
        
         sh 'whoami'
 
-        // env set
-        sh 'printenv | sort'
-
         // ruby
         sh 'which ruby'
         sh 'ruby --version'
