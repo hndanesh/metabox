@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["SubPoint Solutions"]
   spec.email         = ["support@subpointsolutions.com"]
 
-  spec.summary       = "Ruby DSL for Packer/Vagrant pipeline orchestrations"
+  spec.summary       = "Ruby DSL for Packer/Vagrant orchestrations"
   spec.description   = "Ruby DSL for Packer/Vagrant pipeline orchestrations"
   spec.homepage      = "https://github.com/SubPointSolutions"
   spec.license       = "MIT"

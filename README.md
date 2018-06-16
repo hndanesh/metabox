@@ -96,17 +96,25 @@ gem build *.gemspec
 gem build *.gemspec && gem install --local *.gem --no-ri --no-rdoc
 ```
 
+metabox latest install from AppVeyor
+```
+wget https://ci.appveyor.com/api/projects/SubPointSupport/metabox/artifacts/src/metabox/metabox-0.2.3.pre.dev.gem && gem install --local *.gem --no-ri --no-rdoc && metabox version
+```
+
 ## Jenkins2 runs:
 
 ```
 vagrant up
 vagrant ssh
 
-docker run -p 8080:8080 -p 50000:50000 -v /app/ci/metabox-jenkins2:/app  subpoint/metabox-jenkins2
+docker run -name jenkins2 -p 8080:8080 -p 50000:50000 -v /app/ci/metabox-jenkins2:/app  subpoint/metabox-jenkins2
 
 # then on the host, connect the agent
-powershell ". ./src/ci/metabox-ci.ps1; Mb-InitSlave 8095 metabox-host-agent"
-pwsh -c ". ./src/ci/metabox-ci.ps1; Mb-InitSlave 8095 metabox-host-agent"
+powershell ". ./src/ci/metabox-ci.ps1; Mb-InitSlave 8080 'metabox metabox-win10'"
+pwsh -c ". ./src/ci/metabox-ci.ps1; Mb-InitSlave 8080 'metabox metabox-win10'"
+
+
+powershell ". ./src/ci/metabox-ci.ps1; Mb-InitSlave 8080 metabox-host-agent"
 
 ```
 
