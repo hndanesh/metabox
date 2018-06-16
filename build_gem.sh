@@ -24,4 +24,10 @@ RETVAL=$?
 [ $RETVAL -eq 0 ] && echo "All good!"
 [ $RETVAL -ne 0 ] && echo "Can't build gem, exit code was: $RETVAL" && exit $RETVAL
 
+echo "Copying 'latest' gem..."
+mkdir -p .build
+
+cp ./src/metabox/*.gem build/
+cp ./src/metabox/metabox-0*.gem build/metabox-nightly.gem
+
 exit 0

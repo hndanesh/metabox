@@ -12,4 +12,6 @@ artifacts/
 src/config.user/
 src/config.custom/
 **/.vagrant/**
-*.gem
+build
+.build
+src/metabox/*.gem
