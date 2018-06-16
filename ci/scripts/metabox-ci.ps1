@@ -193,7 +193,13 @@ function Init-SlaveMac {
         $portNumber,
         
         [Parameter(Mandatory=$True)]
-        $slaveName
+        $slaveName,
+
+        [Parameter(Mandatory=$False)]
+        $masterUrl,
+
+        [Parameter(Mandatory=$False)]
+        $slaveLabels
     )
 
     Log-MbInfoMessage "Initializing slave on port: $portNumber"
@@ -203,18 +209,34 @@ function Init-SlaveMac {
     
     $currentDir = Get-ScriptDirectory
     Log-MbInfoMessage " - current dir: $currentDir"
+
+    if( [System.String]::IsNullOrEmpty($masterUrl)) {
+        $masterUrl = "http://localhost:$portNumber"
+    } else {
+        $masterUrl = $masterUrl + ":" + $portNumber
+    }
+
+    if( [System.String]::IsNullOrEmpty($slaveLabels)) {
+        $slaveLabels = "metabox"
+        Log-MbInfoMessage " - using DEFAULT labels: $slaveLabels"
+    } else {
+        Log-MbInfoMessage " - using labels: $slaveLabels"
+    }
     
+    $tmpPath = [System.IO.Path]::GetTempPath()
+
     $cmd = @(
         "java",
         "-jar",
         "$currentDir/swarm-client-3.5.jar",
         "-name '$slaveName'",
         "-disableSslVerification",
-        "-master 'http://localhost:$portNumber'",
+        "-master ""$masterUrl""",
         "-username metabox",
         "-password metabox",
-        "-labels metabox"
-        "&"
+        "-labels '$slaveLabels' "
+        "-fsroot ""$tmpPath/metabox-ci/$slaveName"" "
+        #"&"
     )
 
     $cmd_string = [String]::Join(" ", $cmd)
@@ -361,7 +383,10 @@ function Mb-InitSlave {
                            -masterUrl $masterUrl `
                            -slaveLabels $slaveLabels
     } else {
-        Init-SlaveMac     $portNumber $slaveName
+        Init-SlaveMac   -portNumber $portNumber `
+                        -slaveName $slaveName `
+                        -masterUrl $masterUrl `
+                        -slaveLabels $slaveLabels
     }
 }
 
