@@ -1,3 +1,6 @@
+
+# Metabox CI
+
 Metabox is an enhancement API layer on top of Packer/Vagrant tools to simplify machine image builds and Vagrant VMs management. It hides low-level details of Packer/Vagrant offering a consistent workflow to create, author and manage images and virtual machine.
 
 This section describes CI/CD approach for automating metabox tasks and running Packer/Vagrant builds at scale. We assume that reader is familiar with concepts of CI/CD builds and blue/green deployments.
