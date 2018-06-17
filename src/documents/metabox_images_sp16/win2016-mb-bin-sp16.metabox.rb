@@ -39,7 +39,7 @@ MetaboxResource.define_config("win2016-mb-bin-sp16rtm") do | metabox |
             "winrm_username" => "vagrant",
             "winrm_password" => "vagrant",
             "winrm_timeout" => "12h",
-            "output_directory" => "#{working_dir}/packer_output/win2016-mb-app-#{git_branch}",
+            "output_directory" => "#{working_dir}/packer_output/win2016-mb-bin-sp16rtm-#{git_branch}",
             "http_directory" => download_dir
           }
         }
@@ -174,7 +174,7 @@ MetaboxResource.define_config("win2016-mb-bin-sp16rtm") do | metabox |
             "winrm_username" => "vagrant",
             "winrm_password" => "vagrant",
             "winrm_timeout" => "12h",
-            "output_directory" => "#{working_dir}/packer_output/win2016-mb-app-#{git_branch}",
+            "output_directory" => "#{working_dir}/packer_output/win2016-mb-bin-sp16fp2-#{git_branch}",
             "http_directory" => download_dir
           }
         }
