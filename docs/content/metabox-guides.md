@@ -315,7 +315,7 @@ cls && "config/.metabox.downloads.bat" && rake resource:generate && rake resourc
 
 ```bash
 # soe image
-cls && "config/.metabox.images.soe.bat" && rake resource:generate && rake resource:list && rake packer:build[win2016-mb-soe,--force] && rake vagrant:add[win2016-mb-soe,--force] 
+cls && "config/.metabox.images.soe.bat" && rake resource:generate && rake resource:list && rake packer:build[win2016-mb-soe,--force] && rake vagrant:add[win2016-mb-soe,--force]
 
 # app image
 cls && "config/.metabox.images.soe.app.bat" && rake resource:generate && rake resource:list && rake packer:build[win2016-mb-app,--force] && rake vagrant:add[win2016-mb-app,--force]
