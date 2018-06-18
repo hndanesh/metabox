@@ -91,6 +91,11 @@ MetaboxResource.define_config("win2016-mb-soe") do | metabox |
         packer_template.provisioners << { 
           "type" => "powershell",
           "inline" => [
+            "Write-Host 'Downloading windows10.0-kb4103720-x64_c1fb7676d38fffae5c28b9216220c1f033ce26ac.msu...'",
+            "Invoke-RestMethod -Uri http://download.windowsupdate.com/d/msdownload/update/software/updt/2018/05/windows10.0-kb4103720-x64_c1fb7676d38fffae5c28b9216220c1f033ce26ac.msu -OutFile \"$env:Temp/windows10.0-kb4103720-x64_c1fb7676d38fffae5c28b9216220c1f033ce26ac.msu\"",
+            "Write-Host 'Running windows10.0-kb4103720-x64_c1fb7676d38fffae5c28b9216220c1f033ce26ac.msu...'",
+            "Start-Process 'wusa.exe' -ArgumentList @( \"$env:Temp/windows10.0-kb4103720-x64_c1fb7676d38fffae5c28b9216220c1f033ce26ac.msu\", '/quiet', '/norestart' ) -Wait -NoNewWindow",
+            "Remove-Item $env:Temp/windows10.0-kb4103720-x64_c1fb7676d38fffae5c28b9216220c1f033ce26ac.msu",
             "Write-Host 'Installing updates...'",
             "Get-WUInstall -WindowsUpdate -AcceptAll -UpdateType Software -IgnoreReboot"
           ],
