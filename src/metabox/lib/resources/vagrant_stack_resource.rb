@@ -14,6 +14,13 @@ module Metabox
           
             attr_accessor :depends_on  
 
+            # def dsl_properties
+            #     [
+            #         "host_name",
+            #         "handlers"
+            #     ]
+            # end
+
             def stack 
                 @parent
             end

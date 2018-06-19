@@ -55,21 +55,6 @@ task_params =  task_args[:task_params]
 
 # puts "task_name  : #{task_name}"
 # puts "task_params: #{task_params}"
-
-# configure metabox from Metaboxfile
-metabox_file = File.expand_path("Metaboxfile.rb")
-
-if File.exist? metabox_file
-    load metabox_file
-else
-    if !get_non_metaboxfile_tasks.include? task_name
-        missing_metaboxfile_message = "Cannot find Metaboxfile file in the current folder. Use 'metabox init' to create initial Metaboxfile"
-
-        $mb_log.error missing_metaboxfile_message
-        raise missing_metaboxfile_message
-    end
-end
-
 result = $mb_api.execute_task(
     task_name: task_name,
     params: task_params

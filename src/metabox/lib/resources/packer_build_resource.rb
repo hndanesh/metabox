@@ -31,6 +31,13 @@ module Metabox
                 @require_tools = []
             end
 
+            def dsl_properties
+                [
+                    "packer_file_name",
+                    "vagrant_box_name"
+                ]
+            end
+
             def define_packer_template(name = "default", &block)
 
                 if !block_given?

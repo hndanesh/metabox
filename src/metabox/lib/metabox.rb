@@ -41,7 +41,7 @@ _include_files [
   "services/service_base.rb"
 ]
 
-_include_folder_services [  "documents", "services", "resources", "roles" ]
+_include_folder_services [ "services", "resources", "roles" ]
 
 module Metabox
   
@@ -55,9 +55,9 @@ module Metabox
       source_path = source_path.sub 'lib\metabox.rb', '' 
 
       ENV['METABOX_SRC_PATH'] = source_path
+      ENV['METABOX_DOCUMENT_FOLDERS'] = File.join(source_path, "lib/documents")
 
       block.call($mb_api)
-    
   end
 
   class ApiClient < ServiceBase
@@ -74,6 +74,22 @@ module Metabox
       _init_services
 
       log.info "Initialized Metabox API client, version: #{Metabox::VERSION}"
+    end
+
+    def import_metaboxfile
+      # configure metabox from Metaboxfile
+      metabox_file = File.expand_path("Metaboxfile.rb")
+
+      if File.exist? metabox_file
+          load metabox_file
+      else
+          if !get_non_metaboxfile_tasks.include? task_name
+              missing_metaboxfile_message = "Cannot find Metaboxfile file in the current folder. Use 'metabox init' to create initial Metaboxfile"
+
+              log.error missing_metaboxfile_message
+              raise missing_metaboxfile_message
+          end
+      end
     end
 
     def handle_version_call
@@ -114,6 +130,7 @@ module Metabox
     end
 
     def execute_task(task_name:, params:)
+      import_metaboxfile
       @task_service.execute_task(task_name: task_name, params: params)
     end
 

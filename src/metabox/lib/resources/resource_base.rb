@@ -57,7 +57,7 @@ module Metabox
             end
         
             def to_s(prefix = '')
-              
+                
                 result = []
                 result << @this.name
         
@@ -66,14 +66,14 @@ module Metabox
                     value_to_s = value.to_s
         
                     if value.is_a?(ResourceBase) 
-                        value_to_s = value.to_s(prefix + "    ")
+                        value_to_s = value.to_s(prefix)
                     end
         
                     result << "#{prefix} - #{name}: #{value_to_s}"
                 end
 
                 @resources.each do | resource |
-                    result << resource.to_s
+                    result << resource.to_s(prefix)
                 end
         
                 result.join("\n")
