@@ -215,7 +215,7 @@ module Metabox
 
         def _download_file(src:, dst:, options: [])
 
-            dst_folder = File.basename dst
+            dst_folder = File.dirname dst
             log.debug "Ensuring folder: #{dst_folder}"
             FileUtils.mkdir_p dst_folder
 
