@@ -57,7 +57,7 @@ task_params =  task_args[:task_params]
 # puts "task_params: #{task_params}"
 
 # configure metabox from Metaboxfile
-metabox_file = File.expand_path("Metaboxfile")
+metabox_file = File.expand_path("Metaboxfile.rb")
 
 if File.exist? metabox_file
     load metabox_file

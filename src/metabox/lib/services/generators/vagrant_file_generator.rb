@@ -30,8 +30,6 @@ module Metabox
                 log.info " - src -> : #{src} -> #{dst}"
 
                 open(dst, 'w') do |f|
-
-
                     f.puts File.read(src)
                 end
             end
