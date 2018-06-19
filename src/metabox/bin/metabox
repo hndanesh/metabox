@@ -15,13 +15,6 @@ def get_metabox_tasks
     ]
 end
 
-def get_non_metaboxfile_tasks
-    [
-        "metabox:version",
-        "metabox:init"
-    ]
-end
-
 def get_task_params(cmd_params:) 
     # emulate rake task format 'metabox:version'
     task_name   =  ""

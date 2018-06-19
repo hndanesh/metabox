@@ -90,8 +90,11 @@ echo "Completed build!"
 if [ $INSTALL_GEM ] ; then 
     GEM_PATH="$BUILD_DIR/metabox-nightly.gem"
 
+    echo "Unisntalling metabox gem -v $GEM_VERSION"
+    gem uninstall metabox -v $GEM_VERSION --force -x
+
     echo "Installing latest gem: $GEM_PATH"
-    gem install --local $GEM_PATH --no-ri --no-rdoc
+    gem install --local $GEM_PATH --no-ri --no-rdoc --force
     
     validate_exit_code $? "Cannot install nighly gem: $BUILD_DIR"
 

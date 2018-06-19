@@ -76,7 +76,7 @@ module Metabox
       log.info "Initialized Metabox API client, version: #{Metabox::VERSION}"
     end
 
-    def import_metaboxfile
+    def import_metaboxfile(task_name:)
       # configure metabox from Metaboxfile
       metabox_file = File.expand_path("Metaboxfile.rb")
 
@@ -90,6 +90,13 @@ module Metabox
               raise missing_metaboxfile_message
           end
       end
+    end
+
+    def get_non_metaboxfile_tasks
+      [
+          "metabox:version",
+          "metabox:init"
+      ]
     end
 
     def handle_version_call
@@ -130,7 +137,7 @@ module Metabox
     end
 
     def execute_task(task_name:, params:)
-      import_metaboxfile
+      import_metaboxfile(task_name: task_name)
       @task_service.execute_task(task_name: task_name, params: params)
     end
 
