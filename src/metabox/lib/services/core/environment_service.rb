@@ -1,3 +1,4 @@
+require 'securerandom'
 
 module Metabox
 
@@ -182,12 +183,24 @@ module Metabox
             result
         end
 
+        def get_timestamp
+            Time.now.getutc.strftime('%Y-%m-%d_%H-%M-%S_%3N')
+        end
+
+        def get_uuid
+            SecureRandom.uuid
+        end
+
+        @metabox_logs_folder;
+
         def get_metabox_logs_folder
-            result = File.join get_metabox_working_dir, ".logs"
 
-            _ensure_folder result
+            if @metabox_logs_folder.nil?
+                @metabox_logs_folder = __env.fetch('METABOX_LOG_FOLDER', ( File.join get_metabox_working_dir, ".logs/#{get_uuid}" ) )
+                _ensure_folder @metabox_logs_folder
+            end
 
-            result
+            @metabox_logs_folder
         end
 
         def get_metabox_config_folder
@@ -295,7 +308,7 @@ module Metabox
         def _ensure_folder(dir_path)
             log.debug "Ensuring folder: #{dir_path}"
             
-            FileUtils.mkdir_p dir_path
+            FileUtils.mkdir_p(dir_path) unless File.exists?(dir_path)
         end
 
         def _create_metabox_http_test_file(dir_path)
