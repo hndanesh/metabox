@@ -98,7 +98,7 @@ gem build *.gemspec && gem install --local *.gem --no-ri --no-rdoc
 
 metabox latest install from AppVeyor
 ```
-wget https://ci.appveyor.com/api/projects/SubPointSupport/metabox/artifacts/src/metabox/metabox-0.2.3.pre.dev.gem && gem install --local *.gem --no-ri --no-rdoc && metabox version
+wget -O metabox-nightly.gem https://ci.appveyor.com/api/projects/SubPointSupport/metabox/artifacts/.build%2Fmetabox-nightly.gem && gem install --local *.gem --no-ri --no-rdoc && metabox version
 ```
 
 ## Jenkins2 runs:

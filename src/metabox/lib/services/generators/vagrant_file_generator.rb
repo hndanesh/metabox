@@ -22,16 +22,15 @@ module Metabox
 
             def _create_vagrant_file(dir_path)
 
-                log.info "Updating Vagrantfile.."
-
                 src = "#{METABOX_ROOT}/templates/vagrant/Vagrantfile"
                 dst = File.join dir_path, 'Vagrantfile'
+
+                log.info "Updating Vagrantfile: #{dst}"
     
-                log.info " - src -> : #{src} -> #{dst}"
+                log.debug " - src: #{src}"
+                log.debug " - dst: #{dst}"
 
                 open(dst, 'w') do |f|
-
-
                     f.puts File.read(src)
                 end
             end

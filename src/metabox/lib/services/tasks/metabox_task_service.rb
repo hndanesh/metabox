@@ -105,6 +105,26 @@ module Metabox
             _print_version_raw
         end
 
+        def init(params)
+            # create initial metabox file in the current directory
+            _create_metabox_file(Dir.pwd)
+        end
+
+        def _create_metabox_file(dir_path)
+
+            log.info "Creating Metaboxfile.."
+
+            src = "#{METABOX_ROOT}/templates/metabox/Metaboxfile.rb"
+            dst = File.join dir_path, 'Metaboxfile.rb'
+
+            log.debug " - src: #{src}"
+            log.debug " - dst: #{dst}"
+
+            open(dst, 'w') do |f|
+                f.puts File.read(src)
+            end
+        end
+
         def build_image(params)
             log.info "Building packer image and adding it to Vagrant..."
 

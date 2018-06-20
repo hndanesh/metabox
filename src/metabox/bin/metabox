@@ -4,18 +4,34 @@ require "metabox"
 
 # initialize metabox api client
 $mb_api = Metabox::ApiClient.new
+$mb_log = Metabox::ServiceContainer.instance.get_service(Metabox::LogService)
+
 $mb_api.welcome_message
+
+def get_metabox_tasks
+    [
+        "version",
+        "init"
+    ]
+end
 
 def get_task_params(cmd_params:) 
     # emulate rake task format 'metabox:version'
     task_name   =  ""
     task_params = []
 
-    if cmd_params.first == "version"
-        task_name   = "metabox:version"
+    if get_metabox_tasks.include? cmd_params.first 
+        task_name   = "metabox:#{cmd_params.first}"
         task_params = []
     else 
-        task_name   = cmd_params[0] + ":" + cmd_params[1]
+        if cmd_params.count < 2 
+            lack_of_parameters_message = "metabox expects at least two parameters: metabox command subcommand parameters"
+            
+            $mb_log.error lack_of_parameters_message
+            raise lack_of_parameters_message
+        end
+
+        task_name   = "#{cmd_params[0]}:#{cmd_params[1]}"
         task_params = cmd_params.length > 2 ? cmd_params.drop(2).to_a : []
     end
 
@@ -32,14 +48,6 @@ task_params =  task_args[:task_params]
 
 # puts "task_name  : #{task_name}"
 # puts "task_params: #{task_params}"
-
-# configure metabox from Metaboxfile
-metabox_file = File.expand_path("Metaboxfile")
-
-if File.exist? metabox_file
-    load metabox_file
-end
-
 result = $mb_api.execute_task(
     task_name: task_name,
     params: task_params
